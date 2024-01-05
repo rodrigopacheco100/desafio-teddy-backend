@@ -9,7 +9,7 @@
     "start": "node dist/infra/main.js",
     "prepare": "prisma generate",
     "build": "nest build",
-    "vercel-build": "npx prisma migrate deploy",
+    "vercel-build": "npm run build && npx prisma migrate deploy",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "test": "vitest run",
