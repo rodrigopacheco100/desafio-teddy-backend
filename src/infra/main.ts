@@ -10,11 +10,25 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalFilters(new GlobalExceptionFilter(new Logger()));
   const config = new DocumentBuilder()
-    .setTitle('Teddy Backend Test')
+    .setTitle('Teddy - Encurtador de URL')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('swagger', app, document, {
+    customSiteTitle: 'Teddy - Encurtador de URL',
+    customfavIcon: 'https://avatars.githubusercontent.com/u/6936373?s=200&v=4',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+    ],
+    customCssUrl: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+    ],
+  });
 
   patchNestJsSwagger();
   SwaggerModule.setup('docs', app, document);
