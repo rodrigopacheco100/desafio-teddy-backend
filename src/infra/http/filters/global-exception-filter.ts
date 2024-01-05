@@ -22,8 +22,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     if (exception instanceof HttpException) {
       return response.status(exception.getStatus()).json({
-        statusCode: exception.getStatus(),
-        message: exception.message,
+        ...(exception.getResponse() as object),
       });
     }
 
