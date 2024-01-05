@@ -1,0 +1,34 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "linux-musl-openssl-3.0.x"]
+}
+
+model User {
+  id       String @id
+  email    String @unique
+  password String
+
+  links Link[]
+}
+
+model Link {
+  id               String    @id
+  fullUrl          String
+  shortenedCode    String
+  numberOfAccesses Int
+  userId           String?
+  createdAt        DateTime
+  updatedAt        DateTime
+  deletedAt        DateTime?
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([fullUrl])
+  @@index([shortenedCode])
+}
