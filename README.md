@@ -46,3 +46,4 @@ As variáveis ambiente necessárias são:
 - Cacheamento
 - Rate limiter
 - Integração com uma ferramenta para medir a performance da aplicação
+- Kubernetes para gerenciamento de containers da aplicação, para manter um maior uptime possível
