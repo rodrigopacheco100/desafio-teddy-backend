@@ -33,6 +33,12 @@ npm run start:dev
 npm run test
 ```
 
+## Variáveis ambiente
+As variáveis ambiente necessárias são:
+- APP_BASE_URL - necessário para ter a url base do domínio para a criação da url final do redirecionamento
+- DATABASE_URL - necessário para a conexão do banco de dados dependendo do ambiente que a aplicação está funcionando
+- JWT_SECRET - necessário para manter uma diferença entre produção e outros ambientes na geração do JWT por uma questão de segurança
+
 ## Deploy realizado na [Vercel](https://vercel.com/)
 - [Documentação do Swagger](https://desafio-teddy-backend.vercel.app/swagger)
 
